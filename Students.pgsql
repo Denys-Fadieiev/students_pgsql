@@ -41,6 +41,50 @@ SELECT CURRENT_DATE;
 SELECT CURRENT_TIME;
 SELECT CURRENT_TIMESTAMP;
 
+-- Отримати інформацію про студентів (ім'я+прізвище, дата народження) у порядку від найстаршого до наймолодшого.
 
+SELECT first_name || ' ' || last_name AS "Fullname"
+FROM students
+ORDER BY birthday;
+
+-- Отримати список шифрів груп, що не повторюються.
+
+SELECT DISTINCT group_name
+FROM students;
+
+-- Отримати рейтинговий список студентів (ім'я (*або ініціал)+прізвище, середній бал): спочатку студентів із найвищим середнім балом, наприкінці з найменшим.
+
+SELECT first_name || ' ' || last_name AS "Fullname",
+        avg_mark AS "Marks"
+FROM students
+ORDER BY avg_mark DESC;
+
+-- Отримати другу сторінку списку студентів під час перегляду по 6 студентів на сторінці.
+
+SELECT *
+FROM students
+LIMIT 6 OFFSET 6;
+
+
+-- Отримати список 3-х найуспішніших студентів (ім'я, прізвище, середній бал, група).
+
+SELECT first_name || ' ' || last_name AS "Fullname",
+        avg_mark AS "Marks",
+        group_name AS "Group"
+FROM students
+ORDER BY avg_mark DESC
+LIMIT 3;
+
+-- * Отримати максимальний середній бал серед усіх студентів.
+
+SELECT avg (avg_mark) AS "Avg mark of all students" 
+FROM students;
+
+-- * Отримати інфо про студентів (ініціал+прізвище, номер телефону), де номер телефону буде частково прихований та представлений у форматі: +38012******* (тобто видно код оператора).
+
+SELECT 
+SUBSTRING(first_name, 1, 1) || '.' || last_name AS "Student",
+phone_number
+FROM students;
 
 
