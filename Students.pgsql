@@ -84,7 +84,7 @@ FROM students;
 
 SELECT 
 SUBSTRING(first_name, 1, 1) || '.' || last_name AS "Student",
-phone_number
+OVERLAY(phone_number PLACING '********' from 6 for 13)
 FROM students;
 
 
